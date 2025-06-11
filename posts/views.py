@@ -8,11 +8,11 @@ from datetime import datetime
 
 def index(requests):
     posts = Post.objects.all()
-#    post_lists = list()
-#    for count, post in enumerate(posts):
-#        # post_lists.append("#{}: {}<br><hr>".format(str(count), str(post)))
-#        post_lists += f"<p><strong>#{count}:</strong> <a href='{post.slug}'> {post.title} </a></p><hr>"
-#    return HttpResponse(post_lists)
+    post_lists = list()
+    for count, post in enumerate(posts):
+        # post_lists.append("#{}: {}<br><hr>".format(str(count), str(post)))
+        post_lists += f"<p><strong>#{count}:</strong> <a href='{post.slug}'> {post.title} </a><br/><small>{post.content}</small></p><hr>"
+    return HttpResponse(post_lists)
 
-    now = datetime.now()
-    return render(requests, "index.html", locals())
+    # now = datetime.now()
+    # return render(requests, "index.html", locals())
