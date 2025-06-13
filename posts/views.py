@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from posts.models import Post
 from datetime import datetime
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from django.core import serializers
 
 # Create your views here.
 
@@ -14,5 +16,23 @@ def index(requests):
         post_lists += f"<p><strong>#{count}:</strong> <a href='{post.slug}'> {post.title} </a><br/><small>{post.content}</small></p><hr>"
     return HttpResponse(post_lists)
 
-    # now = datetime.now()
-    # return render(requests, "index.html", locals())
+
+def index_use_template(requests):
+    posts = Post.objects.all()
+    json_data = serializers.serialize('json', posts)
+    for post in posts:
+        post.is_external = post.slug.startswith('http')
+    now = datetime.now()
+    pageTitle = "測試 Django Blog"
+    context = {'locals': locals()}
+    return render(requests, "index.html", locals())
+
+
+def showPost(requests, slug):
+    try:
+        post = Post.objects.get(slug=slug)
+    except ObjectDoesNotExist:
+        return redirect('/')
+    except MultipleObjectsReturned:
+        return redirect('/')    
+    return render(requests, "post.html", locals())

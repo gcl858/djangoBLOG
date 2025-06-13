@@ -1,6 +1,6 @@
 python -V
 pip list
-.\.venv\Scripts\activate.bat
+..\..\.venv\Scripts\activate.bat
 rem python -m pip install --upgrade pip
 pip install Django==4.2
 pip list
