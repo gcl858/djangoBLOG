@@ -36,3 +36,23 @@ def showPost(requests, slug):
     except MultipleObjectsReturned:
         return redirect('/')    
     return render(requests, "post.html", locals())
+
+
+def index_use_template1(requests):
+    article_records = Post.objects.all()
+    now = datetime.now()
+    return render(requests, "pages/home.html", locals())
+
+
+def showPost1(requests, slug):
+    try:
+        article = Post.objects.get(slug=slug)
+    except ObjectDoesNotExist:
+        return redirect('/')
+    except MultipleObjectsReturned:
+        return redirect('/')    
+    return render(requests, "pages/post.html", locals())
+
+
+def login(requests):
+    return render(requests, "pages/login.html")

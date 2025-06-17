@@ -17,11 +17,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from posts.views import index, index_use_template, showPost
+from posts.views import index, index_use_template, showPost,index_use_template1,showPost1,login
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', index),
     path('template/', index_use_template),
     path("post/<slug:slug>/", showPost),
+    path('template1/', index_use_template1),
+    path("post1/<slug:slug>/", showPost1),
+    path("login",login)
 ]
