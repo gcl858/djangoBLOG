@@ -1,0 +1,14 @@
+{  
+  "terminal.integrated.profiles.windows": {
+    "PowerShell with Venv": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "args": [
+        "-NoExit",
+        "-Command",
+        "& 'D:\\114AI\\.venv\\Scripts\\Activate.ps1'"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell with Venv"
+}
